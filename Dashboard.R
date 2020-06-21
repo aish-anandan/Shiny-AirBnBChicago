@@ -8,13 +8,13 @@ library(dplyr)
 
 options(warn=-1)
 
-
-listings <- read.csv('mod_listings.csv')
+#Data required for the graphs generated are in two files lister here. Input the data into frames and bind the frames
 listing<-read.csv('listings.csv')
 listing1<-read.csv('listings_1.csv')
 temp<-cbind(listing,listing1)
 listing <- temp[, !duplicated(colnames(temp))]
 
+#For every categorical variable, levels that less than 2% of all levels are grouped into the "Other" category
 condenseMe <- function(vector, threshold = 0.02, newName = "Other") {
   toCondense <- names(which(prop.table(table(vector)) < 0.02))
   vector[vector %in% toCondense] <- newName
@@ -91,7 +91,7 @@ ui <- dashboardPage(
                 ))
               ),
               fluidRow(box(plotOutput("Categ"),width = 12)),
-              fluidRow(box("From the graphs, it can be seen that River North area is one of the most expensive places to rent a house or roo. This is mostly because of its proximity to 
+              fluidRow(box("From the graphs, it can be seen that River North area is one of the most expensive places to rent a house or room. This is mostly because of its proximity to 
                        Chicago downtown.The only other area closer to the downtown is The Loop. Prices here are however reasonable, as the majority of listings are private or shared rooms
                        and not entire houses (which are typically more expensive)",width=12))
               
@@ -152,7 +152,7 @@ server <- function(input, output) {
     {
       "The following plot shows the variation of price (on a logarithmic scale) of the room as a function of the number of people it can accommodate. In general, it can
       be seen that there is a trend of price increase with repect to the room size, which is expected. Also, it can be seen that a lot more options are observed for smaller
-      room sizes (in terms of the number of people it can accommodate."
+      room sizes (in terms of the number of people it can accommodate)."
     }
     else if (input$dataset==key_1[2])
     {
