@@ -1,4 +1,4 @@
-me# Shiny-AirBnBChicago
+# Shiny-AirBnBChicago
 This is an implementation of a R Shiny dashboard that supports exploratory data analysis of the AirBnB data from Chicago. In addition to the story telling process, the dashboard also makes use of *Leaflet* to find AirBnB rentals near the location of the user.
 
 
